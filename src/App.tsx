@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import {BrowserRouter, Routes, Route, Link, HashRouter} from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -9,7 +9,7 @@ import UpdateProduct from "./pages/UpdateProduct";
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -19,7 +19,7 @@ function App() {
                 <Route path="/add-product" element={<AddProduct />} />
                 <Route path="/edit-product/:id" element={<UpdateProduct />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
