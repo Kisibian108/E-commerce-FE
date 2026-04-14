@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Button, Card, Space } from "antd";
-import { useNavigate } from "react-router-dom";
+import {redirect, useNavigate} from "react-router-dom";
 import { authApi } from "../api/authApi";
 import { handleApiResponse, handleApiError } from "../utils/handleApiResponse";
 
@@ -21,10 +21,11 @@ function Login() {
             const res = await authApi.login(values);
 
             handleApiResponse(res, (data) => {
-                if (data.result?.token) {
-                    localStorage.setItem("token", data.result.token);
+                if (data.result) {
+                    localStorage.setItem("token", data.result);
                 }
             });
+            navigate("/product");
         } catch (err) {
             handleApiError(err);
         }

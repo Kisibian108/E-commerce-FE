@@ -22,7 +22,7 @@ function ChangePassword() {
             const res = await authApi.changePassword({ email, ...values });
             handleApiResponse(res, () => {
                 // Redirect về login sau khi đổi mật khẩu thành công
-                navigate("/");
+                navigate("/login");
             });
         } catch (err) {
             handleApiError(err);

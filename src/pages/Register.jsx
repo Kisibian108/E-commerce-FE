@@ -20,7 +20,7 @@ function Register() {
             const res = await authApi.register(values); // gọi API register
             handleApiResponse(res, (data) => {
                 // Callback khi success, ví dụ redirect sang login
-                navigate("/");
+                navigate("/login");
             });
         } catch (err) {
             handleApiError(err);
