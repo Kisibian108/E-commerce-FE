@@ -46,7 +46,7 @@ function AddProduct() {
             imageUrl
         };
 
-        await fetch('http://localhost:8080/products/insert', {
+        await fetch(`${process.env.REACT_APP_API_URL}/products/insert`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

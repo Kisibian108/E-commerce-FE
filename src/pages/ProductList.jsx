@@ -37,7 +37,8 @@ function ProductList() {
     const fetchProducts = () => {
         setLoading(true);
 
-        fetch(`http://localhost:8080/products/getAll?page=${page}&size=6`)
+        fetch(`${process.env.REACT_APP_API_URL}/products/getAll?page=${page}&size=6`)
+
             .then(res => res.json())
             .then(data => {
                 if (data.code === 1000) {
@@ -64,54 +65,6 @@ function ProductList() {
         fetchProducts();
     }, [page]);
 
-    // 🔥 Xóa sản phẩm (modal xịn)
-    // const handleDelete = (id) => {
-    //     const token = localStorage.getItem("token");
-    //
-    //     console.log("TOKEN:", token);
-    //
-    //     confirm({
-    //         title: "Xóa sản phẩm?",
-    //         content: "Bạn chắc chắn muốn xóa sản phẩm này?",
-    //         okText: "Xóa",
-    //         okType: "danger",
-    //         cancelText: "Hủy",
-    //         onOk: async () => {
-    //             console.log("CLICK OK DELETE");
-    //
-    //             try {
-    //                 const res = await fetch(`http://localhost:8080/products/${id}`, {
-    //                     method: "DELETE",
-    //                     headers: {
-    //                         Authorization: `Bearer ${token}`
-    //                     }
-    //                 });
-    //
-    //                 console.log("STATUS:", res.status);
-    //
-    //                 if (!res.ok) {
-    //                     const text = await res.text();
-    //                     console.log("ERROR:", text);
-    //                     message.error("Xóa thất bại!");
-    //                     return;
-    //                 }
-    //
-    //                 message.success("Xóa thành công!");
-    //
-    //                 if (products.length === 1 && page > 0) {
-    //                     setPage(page - 1);
-    //                 } else {
-    //                     fetchProducts();
-    //                 }
-    //
-    //             } catch (err) {
-    //                 console.error(err);
-    //                 message.error("Xóa thất bại!");
-    //             }
-    //         }
-    //     });
-    // };
-
     const handleDelete = (id) => {
         const token = localStorage.getItem("token");
 
@@ -124,7 +77,7 @@ function ProductList() {
             onOk: async () => {
                 console.log("DELETE RUN");
 
-                const res = await fetch(`http://localhost:8080/products/${id}`, {
+                const res = await fetch(`${process.env.REACT_APP_API_URL}/products/${id}`, {
                     method: "DELETE",
                     headers: {
                         Authorization: `Bearer ${token}`

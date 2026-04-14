@@ -18,7 +18,7 @@ function UpdateProduct() {
 
     // 🔥 Load dữ liệu sản phẩm
     useEffect(() => {
-        fetch(`http://localhost:8080/products/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/products/${id}`)
             .then(res => res.json())
             .then(data => {
                 if (data.code === 1000) {
@@ -66,7 +66,7 @@ function UpdateProduct() {
                 imageUrl
             };
 
-            await fetch(`http://localhost:8080/products/${id}`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/products/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
